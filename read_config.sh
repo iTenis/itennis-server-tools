@@ -1,13 +1,14 @@
 #!/bin/bash
-unset array
-for x in `cat ../config/itennis.conf`
-{
-    #字符串截取：从左至右第一个'='之前的内容
-    #echo ${x%%=*}
-    #字符串截取：从左至右第一个'='之后的内容
-    #echo ${x#*=}
-    array[${#array[@]}]="${x%%=*} ${x#*=}"
-}
 
-echo ${#array[@]}
-echo ${array["TIMEOUT"]}
+declare -a ip_one
+grep -v "^#" $1 | while read line
+do
+    i=0
+    for word in ${line};
+    do
+        ip_one[i]=$word
+        let i++
+    done
+    echo ${ip_one[0]} ${ip_one[1]} ${ip_one[2]}
+done
+
