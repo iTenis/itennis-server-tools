@@ -13,10 +13,7 @@ set dest [lindex $argv 5]
 spawn scp -P $port -r $source $username@$host:$dest
 expect {
     "(yes/no)?" {send "yes\n";exp_continue}
-    "assword:" {send "$password\n"}
+    "assword:" {send "$password\n";exp_continue}
+    "*denied*" {exit -1}
+    "timeout" {exit 127}
 }
-expect "100%"
-expect eof
-
-
-
