@@ -25,10 +25,10 @@ EOF
             break
         fi
     done
-    remoteScpRemote config/${MAIN_IP_CONFIG} ${CMDS_LIST} ${CMDS_LIST} y
+    remoteScpRemote config/${MAIN_IP_CONFIG} ${CMDS_LIST} ${CMDS_LIST} y >/dev/null 2>&1
     remoteCmd config/${MAIN_IP_CONFIG} "sh ${CMDS_LIST}" $bg
-    remoteCmd config/${MAIN_IP_CONFIG} "rm -f ${CMDS_LIST}" y
-    rm /tmp/*.$$
+    remoteCmd config/${MAIN_IP_CONFIG} "rm -f ${CMDS_LIST}" y >/dev/null 2>&1
+    rm /tmp/*.$$ >/dev/null 2>&1
 }
 
 batch_exec_scp_remote(){

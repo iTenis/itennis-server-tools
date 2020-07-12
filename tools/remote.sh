@@ -27,7 +27,7 @@ remoteCmd(){
                     log ERROR "ping ${arr[0]} failed" >> ${RESULT_ALL}
                     continue
                 fi
-                log INFO "sh $ROOTDIR/core/expect_cmd.sh ${SSH_PORT} ${arr[1]} ${arr[0]} ${arr[2]} \"$2\""
+                log DEBUG "sh $ROOTDIR/core/expect_cmd.sh ${SSH_PORT} ${arr[1]} ${arr[0]} ${arr[2]} \"$2\""
                 sh $ROOTDIR/core/expect_cmd.sh ${SSH_PORT} ${arr[1]} ${arr[0]} ${arr[2]} "$2" > ${cmd_file}
                 ret=$?
                 if [ $ret -ne 0 ]; then
@@ -56,7 +56,7 @@ remoteCmd(){
                     log ERROR "ping ${arr[0]} failed" >> ${RESULT_ALL}
                     continue
                 fi
-                log INFO "sh $ROOTDIR/core/expect_cmd.sh ${SSH_PORT} ${arr[1]} ${arr[0]} ${arr[2]} \"$2\""
+                log DEBUG "sh $ROOTDIR/core/expect_cmd.sh ${SSH_PORT} ${arr[1]} ${arr[0]} ${arr[2]} \"$2\""
                 sh $ROOTDIR/core/expect_cmd.sh ${SSH_PORT} ${arr[1]} ${arr[0]} ${arr[2]} "$2" > ${cmd_file}
                 ret=$?
                 cat "${cmd_file}" | grep -v "^spawn ssh" | grep -v "^Warning" | grep -v "^Password:" | grep -v "^Authorized" | grep -v "password:" | grep -v "^Permission denied"  | grep -v "^\n"
@@ -115,7 +115,7 @@ remoteScpRemote(){
                     continue
                 fi
 
-                log INFO "sh $ROOTDIR/core/expect_scp_remote.sh ${SSH_PORT} ${arr[1]} ${arr[0]} ${arr[2]} \"$2\" \"$3\""
+                log DEBUG "sh $ROOTDIR/core/expect_scp_remote.sh ${SSH_PORT} ${arr[1]} ${arr[0]} ${arr[2]} \"$2\" \"$3\""
                 sh $ROOTDIR/core/expect_scp_remote.sh ${SSH_PORT} ${arr[1]} ${arr[0]} ${arr[2]} "$2" "$3" > ${cmd_file}
                 ret=$?
                 if [ $ret -ne 0 ]; then
